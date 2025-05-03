@@ -9,6 +9,7 @@ import {
   FaTimes,
   FaSearch,
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -113,9 +114,12 @@ function Header() {
             </div>
 
             {/* Sell Button */}
-            <button className="btn bg-primary text-white text-sm px-4 py-2 hover:bg-secondary gap-2">
+            <Link to={`/form`}>
+            <button className="btn bg-primary hover:bg-white hover:ring-primary ring-1 hover:text-primary text-white text-sm px-4 py-2 gap-2">
               <FaPlus /> Sell
             </button>
+            </Link>
+           
           </div>
         </div>
       </div>
@@ -153,7 +157,7 @@ function Header() {
             <FaHeart />
             <FaBell />
           </div>
-          <button className="btn bg-primary text-white w-full mt-3">
+          <button className="btn bg-primary hover:bg-white hover:ring-primary ring-1 hover:text-primary text-white w-full mt-3">
             <FaPlus className="mr-2" /> Sell
           </button>
         </div>

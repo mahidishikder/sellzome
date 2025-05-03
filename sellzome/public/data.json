@@ -1,0 +1,243 @@
+[
+    {
+      "_id": "1",
+      "name": "Vintage Clock",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "A classic vintage wall clock.",
+      "price": 29.99,
+      "category": "Home Decor",
+      "seller": {
+        "name": "John Doe",
+        "location": "Dhaka, Bangladesh"
+      }
+    },
+    {
+      "_id": "2",
+      "name": "Bluetooth Headphones",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Wireless over-ear Bluetooth headphones.",
+      "price": 59.99,
+      "category": "Electronics",
+      "seller": {
+        "name": "Jane Smith",
+        "location": "Chittagong, Bangladesh"
+      }
+    },
+    {
+      "_id": "3",
+      "name": "Men's Casual Shirt",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Cotton casual shirt for men.",
+      "price": 19.99,
+      "category": "Clothing",
+      "seller": {
+        "name": "Ali Khan",
+        "location": "Sylhet, Bangladesh"
+      }
+    },
+    {
+      "_id": "4",
+      "name": "Smart Watch",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Multifunction smart watch with fitness tracker.",
+      "price": 39.99,
+      "category": "Electronics",
+      "seller": {
+        "name": "Sara Rahman",
+        "location": "Rajshahi, Bangladesh"
+      }
+    },
+    {
+      "_id": "5",
+      "name": "Kitchen Knife Set",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "5-piece stainless steel kitchen knife set.",
+      "price": 24.99,
+      "category": "Kitchen",
+      "seller": {
+        "name": "Tariq Ali",
+        "location": "Khulna, Bangladesh"
+      }
+    },
+    {
+      "_id": "6",
+      "name": "Office Chair",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Comfortable ergonomic office chair.",
+      "price": 99.99,
+      "category": "Furniture",
+      "seller": {
+        "name": "Mina Sultana",
+        "location": "Barisal, Bangladesh"
+      }
+    },
+    {
+      "_id": "7",
+      "name": "Sunglasses",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "UV protected stylish sunglasses.",
+      "price": 14.99,
+      "category": "Accessories",
+      "seller": {
+        "name": "Rasheda Begum",
+        "location": "Mymensingh, Bangladesh"
+      }
+    },
+    {
+      "_id": "8",
+      "name": "Backpack",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Water-resistant travel backpack.",
+      "price": 34.99,
+      "category": "Bags",
+      "seller": {
+        "name": "Abu Bakr",
+        "location": "Narayanganj, Bangladesh"
+      }
+    },
+    {
+      "_id": "9",
+      "name": "LED Desk Lamp",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Rechargeable LED desk lamp.",
+      "price": 22.99,
+      "category": "Home Decor",
+      "seller": {
+        "name": "Rahim Uddin",
+        "location": "Bogura, Bangladesh"
+      }
+    },
+    {
+      "_id": "10",
+      "name": "Yoga Mat",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Eco-friendly non-slip yoga mat.",
+      "price": 18.99,
+      "category": "Fitness",
+      "seller": {
+        "name": "Fatima Akter",
+        "location": "Comilla, Bangladesh"
+      }
+    },
+    {
+      "_id": "11",
+      "name": "Gaming Mouse",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "High DPI programmable gaming mouse.",
+      "price": 25.99,
+      "category": "Gaming",
+      "seller": {
+        "name": "Jamil Hossain",
+        "location": "Tangail, Bangladesh"
+      }
+    },
+    {
+      "_id": "12",
+      "name": "Women’s Handbag",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Elegant leather handbag for women.",
+      "price": 45.99,
+      "category": "Accessories",
+      "seller": {
+        "name": "Naila Sultana",
+        "location": "Rangpur, Bangladesh"
+      }
+    },
+    {
+      "_id": "13",
+      "name": "Bluetooth Speaker",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Portable waterproof Bluetooth speaker.",
+      "price": 29.99,
+      "category": "Electronics",
+      "seller": {
+        "name": "Mokbul Hossain",
+        "location": "Khulna, Bangladesh"
+      }
+    },
+    {
+      "_id": "14",
+      "name": "Men's Sneakers",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Comfortable and stylish sneakers.",
+      "price": 49.99,
+      "category": "Footwear",
+      "seller": {
+        "name": "Arif Rahman",
+        "location": "Jessore, Bangladesh"
+      }
+    },
+    {
+      "_id": "15",
+      "name": "Digital Camera",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Compact digital camera with 20MP lens.",
+      "price": 119.99,
+      "category": "Electronics",
+      "seller": {
+        "name": "Shamim Ahmed",
+        "location": "Madaripur, Bangladesh"
+      }
+    },
+    {
+      "_id": "16",
+      "name": "Makeup Kit",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Full makeup kit with brushes and palette.",
+      "price": 39.99,
+      "category": "Beauty",
+      "seller": {
+        "name": "Shaila Begum",
+        "location": "Meherpur, Bangladesh"
+      }
+    },
+    {
+      "_id": "17",
+      "name": "Baby Stroller",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Foldable lightweight baby stroller.",
+      "price": 129.99,
+      "category": "Baby",
+      "seller": {
+        "name": "Amina Begum",
+        "location": "Narsingdi, Bangladesh"
+      }
+    },
+    {
+      "_id": "18",
+      "name": "Electric Kettle",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Fast boiling electric kettle.",
+      "price": 21.99,
+      "category": "Kitchen",
+      "seller": {
+        "name": "Kamal Uddin",
+        "location": "Brahmanbaria, Bangladesh"
+      }
+    },
+    {
+      "_id": "19",
+      "name": "Wireless Charger",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Fast wireless phone charger.",
+      "price": 15.99,
+      "category": "Electronics",
+      "seller": {
+        "name": "Rubina Akter",
+        "location": "Jessore, Bangladesh"
+      }
+    },
+    {
+      "_id": "20",
+      "name": "Wall Art Canvas",
+      "image": "https://images-cdn.ubuy.co.id/64c2bac02bf2da09f0538339-apple-iphone-x-64gb-unlocked-gsm-phone.jpg",
+      "description": "Abstract canvas wall art for living room.",
+      "price": 27.99,
+      "category": "Home Decor",
+      "seller": {
+        "name": "Rubina Akter",
+        "location": "Jessore, Bangladesh"
+      }
+    }
+  ]
+  

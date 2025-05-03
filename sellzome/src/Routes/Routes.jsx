@@ -4,6 +4,7 @@ import {
 import Root from "../Layout/Root";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/Home";
+import Form from "../components/Form/Form";
 
   
   export const router = createBrowserRouter([
@@ -15,6 +16,10 @@ import Home from "../pages/Home/Home";
         {
             path:'/',
             element: <Home></Home>
+        },
+        {
+          path:'/form',
+          element:<Form></Form>
         }
       ]
     },
