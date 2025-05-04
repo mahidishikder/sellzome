@@ -5,6 +5,8 @@ import Root from "../Layout/Root";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/Home";
 import Form from "../components/Form/Form";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
   
   export const router = createBrowserRouter([
@@ -20,6 +22,14 @@ import Form from "../components/Form/Form";
         {
           path:'/form',
           element:<Form></Form>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'/register',
+          element:<Register></Register>
         }
       ]
     },

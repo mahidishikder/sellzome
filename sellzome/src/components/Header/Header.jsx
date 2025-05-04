@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 
 function Header() {
-  const user = true; // Change this based on authentication state
+  const user = false; // Change this based on authentication state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
