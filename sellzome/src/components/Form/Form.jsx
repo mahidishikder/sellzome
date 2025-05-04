@@ -1,160 +1,207 @@
 import React, { useState } from 'react';
 
 function Form() {
+  // Form state
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    location: '',
-    category: '',
-    description: '',
-    images: [],
+    productName: '',
+    productDetails: '',
+    price: '',
+    sellerName: '',
+    division: '',
+    district: '',
+    images: [] // This will store the image files
   });
 
-  // Handle text and dropdown changes
+  // Available divisions and districts in Bangladesh
+  const bangladeshLocations = {
+    divisions: ['Dhaka', 'Chittagong', 'Rajshahi', 'Khulna', 'Barishal', 'Sylhet', 'Rangpur', 'Mymensingh'],
+    districts: {
+      Dhaka: ['Dhaka', 'Faridpur', 'Gazipur', 'Gopalganj', 'Kishoreganj', 'Madaripur', 'Manikganj', 'Munshiganj', 'Narayanganj', 'Narsingdi', 'Rajbari', 'Shariatpur', 'Tangail'],
+      Chittagong: ['Bandarban', 'Brahmanbaria', 'Chandpur', 'Chittagong', 'Comilla', 'Cox\'s Bazar', 'Feni', 'Khagrachhari', 'Lakshmipur', 'Noakhali', 'Rangamati'],
+      Rajshahi: ['Bogra', 'Chapai Nawabganj', 'Joypurhat', 'Naogaon', 'Natore', 'Pabna', 'Rajshahi', 'Sirajganj'],
+      Khulna: ['Bagerhat', 'Chuadanga', 'Jessore', 'Jhenaidah', 'Khulna', 'Kushtia', 'Magura', 'Meherpur', 'Narail', 'Satkhira'],
+      Barishal: ['Barguna', 'Barishal', 'Bhola', 'Jhalokati', 'Patuakhali', 'Pirojpur'],
+      Sylhet: ['Habiganj', 'Moulvibazar', 'Sunamganj', 'Sylhet'],
+      Rangpur: ['Dinajpur', 'Gaibandha', 'Kurigram', 'Lalmonirhat', 'Nilphamari', 'Panchagarh', 'Rangpur', 'Thakurgaon'],
+      Mymensingh: ['Jamalpur', 'Mymensingh', 'Netrokona', 'Sherpur']
+    }
+  };
+
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
     }));
   };
 
-  // Handle image uploads (max 5)
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files).slice(0, 5); // Limit to 5
-    setFormData((prevData) => ({
-      ...prevData,
-      images: files,
+  // Handle image upload
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files).slice(0, 5); // Limit to 5 images
+    setFormData(prev => ({
+      ...prev,
+      images: files
     }));
   };
 
-  // Handle form submit
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    // API call or further processing here
+    // Here you would typically send the form data to your backend
+    console.log('Form submitted:', formData);
+    // Reset form after submission if needed
   };
 
   return (
-    <div className="p-4 max-w-2xl mx-auto bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Add Product Info</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Name */}
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        {/* Email */}
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          />
-        </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-gray-700">Description</label>
-          <textarea
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-
-        {/* Location Dropdown */}
-        <div className="mb-4">
-          <label htmlFor="location" className="block text-gray-700">Location</label>
-          <select
-            name="location"
-            id="location"
-            value={formData.location}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          >
-            <option value="">Select Location</option>
-            <option value="Dhaka">Dhaka</option>
-            <option value="Chattogram">Chattogram</option>
-            <option value="Rajshahi">Rajshahi</option>
-            <option value="Sylhet">Sylhet</option>
-          </select>
-        </div>
-
-        {/* Category Dropdown */}
-        <div className="mb-4">
-          <label htmlFor="category" className="block text-gray-700">Category</label>
-          <select
-            name="category"
-            id="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Pets">Pets</option>
-            <option value="Books">Books</option>
-          </select>
-        </div>
-
-        {/* Image Upload */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Upload Images (Max 5)</label>
+    <div className="max-w-2xl mt-20  mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold mb-6 text-center">Product Selling Form</h1>
+      
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Product Images */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Product Images (Max 5)
+          </label>
           <input
             type="file"
-            accept="image/*"
             multiple
-            onChange={handleImageChange}
-            className="w-full"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="block w-full text-sm text-gray-500
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-md file:border-0
+              file:text-sm file:font-semibold
+              file:bg-blue-50 file:text-blue-700
+              hover:file:bg-blue-100"
           />
-
-          {/* Image Preview */}
-          {formData.images.length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
-              {formData.images.map((image, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-300 rounded-md p-2 shadow-sm flex flex-col items-center"
-                >
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt={`Preview ${index + 1}`}
-                    className="w-full h-32 object-cover rounded"
-                  />
-                  <p className="text-sm text-gray-600 mt-2">Image {index + 1}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="mt-2 flex flex-wrap gap-2">
+            {formData.images.map((image, index) => (
+              <div key={index} className="w-20 h-20 border rounded-md overflow-hidden">
+                <img 
+                  src={URL.createObjectURL(image)} 
+                  alt={`Preview ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="mt-1 text-xs text-gray-500">
+            {formData.images.length} / 5 images selected
+          </p>
         </div>
 
+        {/* Product Name */}
+        <div>
+          <label htmlFor="productName" className="block text-sm font-medium text-gray-700">
+            Product Name
+          </label>
+          <input
+            type="text"
+            id="productName"
+            name="productName"
+            value={formData.productName}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Product Details */}
+        <div>
+          <label htmlFor="productDetails" className="block text-sm font-medium text-gray-700">
+            Product Details
+          </label>
+          <textarea
+            id="productDetails"
+            name="productDetails"
+            rows={4}
+            value={formData.productDetails}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Price */}
+        <div>
+          <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+            Price (BDT)
+          </label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Seller Name */}
+        <div>
+          <label htmlFor="sellerName" className="block text-sm font-medium text-gray-700">
+            Seller Name
+          </label>
+          <input
+            type="text"
+            id="sellerName"
+            name="sellerName"
+            value={formData.sellerName}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+
+        {/* Location - Division */}
+        <div>
+          <label htmlFor="division" className="block text-sm font-medium text-gray-700">
+            Division
+          </label>
+          <select
+            id="division"
+            name="division"
+            value={formData.division}
+            onChange={handleChange}
+            required
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">Select Division</option>
+            {bangladeshLocations.divisions.map(division => (
+              <option key={division} value={division}>{division}</option>
+            ))}
+          </select>
+        </div>
+
+        {/* Location - District (conditional on division selection) */}
+        {formData.division && (
+          <div>
+            <label htmlFor="district" className="block text-sm font-medium text-gray-700">
+              District
+            </label>
+            <select
+              id="district"
+              name="district"
+              value={formData.district}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select District</option>
+              {bangladeshLocations.districts[formData.division].map(district => (
+                <option key={district} value={district}>{district}</option>
+              ))}
+            </select>
+          </div>
+        )}
+     
         {/* Submit Button */}
-        <div className="mb-4 text-center">
+        <div>
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition duration-300"
+            className="w-full flex justify-center py-2 px-4 border bg-primary border-transparent rounded-md shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Submit Product
           </button>
