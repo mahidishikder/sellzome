@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { TbCategory2 } from 'react-icons/tb';
 
 const Category = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredCategories, setFilteredCategories] = useState([]);
+  const [showMobileCategories, setShowMobileCategories] = useState(false); // new
 
   const categories = [
     { id: 1, name: 'Electronics', icon: '📱', subcategories: ['Smartphones', 'Laptops', 'Cameras', 'Headphones', 'Tablets', 'Smart Watches', 'Gaming Consoles', 'Accessories'] },
@@ -20,19 +21,11 @@ const Category = () => {
     { id: 12, name: 'Office', icon: '💼', subcategories: ['Office Furniture', 'Stationery', 'Printers', 'Computers', 'Storage', 'Presentation', 'Writing Instruments'] }
   ];
 
-  // Filter categories based on search term
-  useEffect(() => {
-    const results = categories.filter(category =>
-      category.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCategories(results);
-  }, [searchTerm, categories]);
-
-  const categoriesToDisplay = searchTerm ? filteredCategories : categories;
+  const [openSubMenu, setOpenSubMenu] = useState(null); // for mobile
 
   return (
-    <div className="container mx-auto px-4 py-6 relative">
-      {/* Search */}
+    <div className="container mx-auto px-4 pt-6 relative">
+      {/* Search Input Only (No functionality) */}
       <div className="relative w-full max-w-2xl mx-auto mb-6">
         <input
           type="search"
@@ -48,14 +41,13 @@ const Category = () => {
 
       {/* Desktop Category Grid */}
       <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-        {categoriesToDisplay.map((category) => (
+        {categories.map((category) => (
           <div
             key={category.id}
             className="relative group w-full max-w-xs mx-auto"
             onMouseEnter={() => setHoveredCategory(category)}
             onMouseLeave={() => setHoveredCategory(null)}
           >
-            {/* Category Card */}
             <div className="cursor-pointer bg-white p-4 rounded-lg shadow border flex flex-col items-center hover:shadow-lg transition">
               <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-2xl mb-2">
                 {category.icon}
@@ -65,7 +57,6 @@ const Category = () => {
               </span>
             </div>
 
-            {/* Hover Modal */}
             {hoveredCategory?.id === category.id && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-white border rounded-lg shadow-lg z-20">
                 <div className="p-4">
@@ -89,20 +80,27 @@ const Category = () => {
         ))}
       </div>
 
-      {/* Mobile Category Grid (2 columns) */}
-      <div className="md:hidden">
-        {categoriesToDisplay.map((category) => {
-          const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
+      {/* Mobile View: Show Button */}
+      <div className="md:hidden mb-4 text-center">
+        <button 
+          onClick={() => setShowMobileCategories(!showMobileCategories)}
+          className="bg-primary flex justify-center items-center gap-2 text-white px-5 py-2 rounded text-sm transition"
+        > <TbCategory2 />
 
-          const handleMobileCategoryClick = () => {
-            setIsMobileSubmenuOpen(!isMobileSubmenuOpen);
-          };
+          {showMobileCategories ? 'Hide Categories' : 'Choose Category'}
+        </button>
+      </div>
 
-          return (
-            <div key={category.id} className="border rounded-md shadow-sm">
+      {/* Mobile Category Grid */}
+      {showMobileCategories && (
+        <div className="md:hidden">
+          {categories.map((category) => (
+            <div key={category.id} className="border rounded-md shadow-sm mb-2">
               <button
                 className="w-full bg-white p-3 flex items-center justify-between"
-                onClick={handleMobileCategoryClick}
+                onClick={() =>
+                  setOpenSubMenu(openSubMenu === category.id ? null : category.id)
+                }
               >
                 <div className="flex items-center">
                   <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xl mr-2">
@@ -112,7 +110,7 @@ const Category = () => {
                 </div>
                 <svg
                   className={`w-4 h-4 text-gray-500 transition-transform ${
-                    isMobileSubmenuOpen ? 'rotate-180' : ''
+                    openSubMenu === category.id ? 'rotate-180' : ''
                   }`}
                   fill="none"
                   stroke="currentColor"
@@ -122,21 +120,25 @@ const Category = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {isMobileSubmenuOpen && (
-                <div className="p-3 bg-gray-50 rounded-b-md">
-                  <ul className="space-y-1">
-                    {category.subcategories.map((subcat, idx) => (
-                      <li key={idx} className="text-xs text-gray-600 hover:text-blue-600 cursor-pointer transition">
-                        {subcat}
-                      </li>
-                    ))}
-                  </ul>
+              {openSubMenu === category.id && (
+                <div className="p-3 bg-gray-50 rounded-b-md flex flex-wrap gap-2">
+                  {category.subcategories.map((subcat, idx) => (
+                    <button
+                      key={idx}
+                      className="px-3 py-1 bg-white text-gray-700 border border-gray-300 rounded-full text-xs
+                                 hover:bg-blue-100 hover:text-blue-600 
+                                 focus:outline-none focus:ring-2 focus:ring-blue-300
+                                 active:bg-blue-200 transition"
+                    >
+                      {subcat}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
