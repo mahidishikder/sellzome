@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook, FaXTwitter } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 function Login() {
+  const { loginUser } = useContext(AuthContext);  // Get loginUser from context
+  const navigate = useNavigate();
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,11 +35,24 @@ function Login() {
     e.preventDefault();
     if (validateForm()) {
       setIsSubmitting(true);
-      // Simulate API call
-      setTimeout(() => {
-        console.log('Login submitted:', { email, password });
-        setIsSubmitting(false);
-      }, 1500);
+
+      // Call loginUser from AuthContext
+      loginUser(email, password)
+        .then(() => {
+          setIsSubmitting(false);
+          navigate('/'); // Redirect user to dashboard or home
+        })
+        .catch((error) => {
+          setIsSubmitting(false);
+          const errorMessage = error.message;
+          if (errorMessage.includes('user-not-found')) {
+            setErrors({ ...errors, email: 'No user found with this email' });
+          } else if (errorMessage.includes('wrong-password')) {
+            setErrors({ ...errors, password: 'Incorrect password' });
+          } else {
+            setErrors({ ...errors, general: 'An error occurred. Please try again.' });
+          }
+        });
     }
   };
 
@@ -86,53 +103,15 @@ function Login() {
               {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
             </div>
 
-            {/* Forgot Password Link */}
-            <div className="flex justify-end">
-              <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline">
-                Forgot password?
-              </Link>
-            </div>
-
             {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
               className={`w-full bg-primary text-white py-3 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              {isSubmitting ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Processing...
-                </span>
-              ) : 'Login'}
+              {isSubmitting ? 'Processing...' : 'Login'}
             </button>
           </form>
-
-          {/* OR Divider */}
-          <div className="flex items-center my-6">
-            <hr className="flex-grow border-gray-300" />
-            <span className="mx-3 text-gray-500 text-sm font-medium">OR</span>
-            <hr className="flex-grow border-gray-300" />
-          </div>
-
-          {/* Social Buttons */}
-          <div className="space-y-3">
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition">
-              <FcGoogle size={20} />
-              <span className="text-sm font-medium text-gray-700">Continue with Google</span>
-            </button>
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition">
-              <FaFacebook className="text-blue-600" size={20} />
-              <span className="text-sm font-medium text-gray-700">Continue with Facebook</span>
-            </button>
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-2.5 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200 transition">
-              <FaXTwitter size={20} />
-              <span className="text-sm font-medium text-gray-700">Continue with X</span>
-            </button>
-          </div>
 
           {/* Registration Link */}
           <p className="text-center text-sm text-gray-600 mt-6">
